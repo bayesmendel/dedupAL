@@ -14,8 +14,8 @@ def compute_matrix(ped, dataframe, current_year, colname = 'Pedigreename'):
 
     This matrix represents the count of individuals within the pedigree 
     stratified by cancer type, sex, and age quartile, as defined in 
-    Section 2 B.2 of Rosito et al. (2025). It is the core input for both 
-    the coincidence-based labeling (Step 2).
+    Section 2 B.2 of Rosito et al. (2025). It is the core input for the
+    coincidence-based labeling (Step 2).
 
     Parameters
     ----------
