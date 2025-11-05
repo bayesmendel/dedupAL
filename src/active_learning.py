@@ -34,11 +34,11 @@ def random_forest_training(X, y, verbose = True):
        The training confusion matrix.
     """
 
-	seed = config.seed
-	class_weight = config.class_weight
-	min_samples_split = config.min_samples_split
-	max_depth = config.max_depth
-	min_samples_leaf = config.min_samples_leaf
+    seed = config.seed
+    class_weight = config.class_weight
+    min_samples_split = config.min_samples_split
+    max_depth = config.max_depth
+    min_samples_leaf = config.min_samples_leaf
     model = RandomForestClassifier(random_state = seed, 
     		class_weight = class_weight, 
         	min_samples_split = min_samples_split,  
@@ -56,33 +56,33 @@ def random_forest_training(X, y, verbose = True):
 
 
 def new_labeling(rf, X, verbose = True):
-	"""
-	Determines new labels for the unlabeled candidate pairs based on 
-	the predicted probabilities of the current Random Forest model.
-	These labels are the core of Step 4 described in Section 2 of
-	Rosito et al. (2025). 
+    """
+    Determines new labels for the unlabeled candidate pairs based on 
+    the predicted probabilities of the current Random Forest model.
+    These labels are the core of Step 4 described in Section 2 of
+    Rosito et al. (2025). 
 
-	Pairs are assigned a label of 1 (candidate positive, CP) or 0 
-	(candidate negative, CN) if thier predicted probabilities exceed 
-	the global parameter p_threshold, or 3 if they remain unlabeled
+    Pairs are assigned a label of 1 (candidate positive, CP) or 0 
+    (candidate negative, CN) if thier predicted probabilities exceed 
+    the global parameter p_threshold, or 3 if they remain unlabeled
 
-	Parameters
-	----------
-	rf : RandomForestClassifier
-	    The currently fitted Random Forest model.
-	X : pd.DataFrame
-	    Features of the unlabeled candidate pairs.
-	verbose : bool, optional
-	    If True, prints the count of newly labeled positive, negative, 
-	    and remaining unknown pairs (Default is True).
+    Parameters
+    ----------
+    rf : RandomForestClassifier
+        The currently fitted Random Forest model.
+    X : pd.DataFrame
+        Features of the unlabeled candidate pairs.
+    verbose : bool, optional
+        If True, prints the count of newly labeled positive, negative, 
+        and remaining unknown pairs (Default is True).
 
-	Returns
-	-------
-	np.ndarray
-	    A vector of new labels corresponding to the rows in X.
-	"""
+    Returns
+    -------
+    np.ndarray
+        A vector of new labels corresponding to the rows in X.
+    """
 
-	p_threshold = config.p_threshold
+    p_threshold = config.p_threshold
     p_pred = rf.predict_proba(X)
     n = len(X)
     y_new = 3 * np.ones(n)
@@ -94,8 +94,10 @@ def new_labeling(rf, X, verbose = True):
             y_new[i] = 0
 
     if verbose:
-    	print('Number of new CP: ', sum(y_new == 1))
-    	print('Number of new CN: ', sum(y_new == 0))
-    	print('Number unknown pairs: ', sum(y_new == 3))
+        print('Number of new CP: ', sum(y_new == 1))
+        print('Number of new CN: ', sum(y_new == 0))
+        print('Number unknown pairs: ', sum(y_new == 3))
 
-    return y_new   
+
+    return y_new
+  
