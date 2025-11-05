@@ -16,7 +16,7 @@ def get_features(G):
 
     Parameters
     ----------
-    G : networkx.Graph
+    G : networkx.DiGraph
         Pedigree graph. Nodes must contain the following attributes:
         'age_at_present' and binary columns for 'Sex', 'isDead', 
         'HadCancer', 'Presult' (positive test result), and one binary 
