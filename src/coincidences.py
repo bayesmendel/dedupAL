@@ -109,7 +109,7 @@ def coincidences(ped1, ped2, dataframe, current_year, colname='Pedigreename'):
     -------
     np.ndarray
         A 1D array of two elements: 
-        [0]: Number of Coincidences ($N_{ij}$, float).
+        [0]: Number of Coincidences (Nij, float).
         [1]: Normalized coincidence proportion (percentage, float)
     """
 
@@ -150,7 +150,7 @@ def coincidences_pairs(pairs, dataframe, current_year, colname = 'Pedigreename')
     -------
     tuple of list
         A tuple containing two lists:
-        [0]: `ncoincidences` (list of float) - Number of Coincidences ($N_{ij}$)
+        [0]: `ncoincidences` (list of float) - Number of Coincidences (Nij)
         [1]: `proportions` (list of float) - Normalized coincidence proportions 
              for each pair.
     """

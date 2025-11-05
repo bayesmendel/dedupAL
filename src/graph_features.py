@@ -78,7 +78,6 @@ def get_features(G):
         cancer_values = np.array([G.nodes[node][cancer] for node in G.nodes()])
         avg_cancers.append(safe_mean(cancer_values))
 
-    # --- Concatenate all features ---
     features = np.array(
         [num_nodes, num_edges, density, avg_degree, avg_shortest_path_length,
          avg_Sex, avg_HadCancer, avg_age_at_present, avg_isDead, avg_Presult,
@@ -97,7 +96,7 @@ def extract_features(G1, G2):
     node-level differences between the two graphs.
 
     The difference is computed as |F1 - F2| where Fi = get_features(Gi)
-    If any element in $F1$ or $F2$ is NaN, the corresponding difference is 
+    If any element in F1 or F2 is NaN, the corresponding difference is 
     set to NaN.
 
     Parameters
@@ -114,6 +113,7 @@ def extract_features(G1, G2):
         feature vectors of G1 and G2. The length is equal to the number of 
         features extracted by get_features(G).
     """
+    
     # Get features for both graphs
     features1 = get_features(G1) 
     features2 = get_features(G2) 
