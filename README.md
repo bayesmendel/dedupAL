@@ -31,9 +31,9 @@ All critical thresholds and constants are managed in `src/config.py`. These valu
 
 | Parameter | Description | Reference Section |
 | :--- | :--- | :--- |
-| `N_threshold` | Coincidence count threshold for initial positive labeling (Step 2). | Sec. 2B |
-| `p_threshold` | Probability threshold for confident Random Forest predictions (Steps 3 and 4). | Sec. 2B |
-| `T` | Maximum number of Active Learning iterations. | Sec. 2B |
+| `N_threshold` | Coincidence count threshold for initial positive labeling (Step 2). | Sec. 2 B.2 |
+| `p_threshold` | Probability threshold for confident Random Forest predictions (Steps 3 and 4). | Sec. 2 B.3 |
+| `T` | Maximum number of Active Learning iterations. | Sec. 2 B.4 |
 
 The `src/config.py` file also sets the Random Forest hyperparameters and the list of cancers used for feature extraction. Consequently, the input dataset must contain columns matching the names of those cancers.
 
