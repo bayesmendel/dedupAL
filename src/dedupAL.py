@@ -55,12 +55,14 @@ def dedupAL(dataframe, current_year, colname = 'Pedigreename', verbose = True):
         Global indices of the final Candidate Negative (CN) pairs.
     np.ndarray
         Global indices of the final unlabeled pairs.
+    list
+        A list containing the number of unlabeled pairs at each iteration.
     """
 
 
     print("--- Starting Deduplication Pipeline ---")
 
-    families = dataframe[colname].unique()   
+    families = dataframe[colname].unique()  
     pairs = np.array(list(combinations(families, 2)))
     npairs = len(pairs)
 
@@ -93,7 +95,9 @@ def dedupAL(dataframe, current_year, colname = 'Pedigreename', verbose = True):
             elif nc:
                 y[i] = 1
 
-    initial_labeled = sum(y != 3)            
+    initial_labeled = sum(y != 3)
+
+    remaining = [npairs, sum(y == 3)]            
 
     print('Step 1 and Step 2: Initial labeling completed')
     print(f"Initial labeled: {initial_labeled} ({initial_labeled/npairs*100:.2f}%)")
@@ -123,6 +127,7 @@ def dedupAL(dataframe, current_year, colname = 'Pedigreename', verbose = True):
         # Get new labels for the current X_nolabel pool
         y_new_labels_for_current_X_nolabel = new_labeling(rf, X_nolabel, verbose)
         rem = sum(y_new_labels_for_current_X_nolabel == 3)
+        remaining.append(rem)
 
         # Update the training set    
         newly_labeled_mask = (y_new_labels_for_current_X_nolabel != 3)
@@ -152,4 +157,4 @@ def dedupAL(dataframe, current_year, colname = 'Pedigreename', verbose = True):
 
     results = [len(index_pos), len(index_neg), len(index_nolabel)]
 
-    return results, index_pos, index_neg, index_nolabel
+    return results, index_pos, index_neg, index_nolabel, remaining
