@@ -85,7 +85,4 @@ Plot of the number of unlabeled pairs as a function of the iteration:
 
 <img width="565" height="414" alt="n-iter" src="https://github.com/user-attachments/assets/c0b045be-d763-482c-8da0-b33ccf73c0b4" />
 
-
-
-
-
+See `docs/README.md` for supplementary presentation materials (slides/posters) related to this project.
