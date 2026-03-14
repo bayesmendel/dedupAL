@@ -58,7 +58,7 @@ The `dedupAL` function manages the entire pipeline.
 ```
 from src.dedupAL import dedupAL
 
-1. Load your dataset
+# Load your dataset
 data_path = 'path/to/your/combined_data.csv' 
 df = pd.read_csv(data_path)
 
